@@ -12,8 +12,8 @@ import uuid
 class Genre(models.Model):
     """Model Representing a book genre."""
     name = models.CharField(
-                            max_length=200, 
-                            unique=True, 
+                            max_length=200,
+                            unique=True,
                             help_text="Enter a book genre (e.g. Science Fiction, French Poetry etc.)")
 
     def __str__(self) -> str:
