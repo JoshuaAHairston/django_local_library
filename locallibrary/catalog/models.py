@@ -18,7 +18,7 @@ class Genre(models.Model):
 
     def __str__(self) -> str:
         """String for representing the Model object."""
-        return self.name 
+        return self.name
 
     def get_absolute_url(self) -> str:
         return reverse('genre-detail', args=[str(self.id)])    
@@ -74,6 +74,11 @@ class Book(models.Model):
     def __str__(self):
         """String for representing the Model object"""
         return self.title
+
+    def display_genre(self) -> str:
+        """Create a string for the Genre. This is required to display genre in Admin."""
+        return ','.join(genre.name for genre in self.genre.all()[:3])
+    display_genre.short_description = 'Genre'
 
     def get_absolute_url(self):
         """Returns the URL to access a detail record for this book"""
