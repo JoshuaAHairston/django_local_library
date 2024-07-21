@@ -4,4 +4,5 @@ from . import views
 # Use the name attribute here for your static html when linking with urls.
 urlpatterns = [
     path('', views.index, name='index'),
+    path('books/', views.BookListView.as_view(), name='books'),
 ]
