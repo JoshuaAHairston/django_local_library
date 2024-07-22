@@ -1,0 +1,20 @@
+{% extends "base_generic.html"%}
+
+{% block content %}
+<h1>Book List</h1>
+<!--this is conditional execution with template tags-->
+<!--the view passes the context (list of books) by default as object_list and book_list aliases-->
+{% if book_list %}
+<ul>
+    <!--book_list is a variable that is made after the BookListView Class was made. it's always named by the_model_name_list-->
+    {% for book in book_list %}
+    <li>
+        <a href="{{book.get_absolute_url}}">{{book.title}}</a>
+        ({{book.author}})
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Thre are no books in the library</p>
+{% endif %}
+{% endblock %}
