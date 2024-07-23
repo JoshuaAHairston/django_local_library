@@ -21,4 +21,9 @@
     <li><strong>Genres with the word 'Fantasy':</strong> {{ genre_count_word }}</li>
     <li><strong>Books with the word 'The':</strong> {{ books_count_word }}</li>
 </ul>
+
+<p>
+    <!--pluralize adds an s when the page has been visited multiple times-->
+    You have visited this page {{num_visits}} time{{num_visits|pluralize}}.
+</p>
 {% endblock %}
