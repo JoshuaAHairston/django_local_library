@@ -1,5 +1,5 @@
 <!-- Had to put this file and the list view file in another folder called catalog for the book list to work. I was wondering why I would have to do this?-->
-{%extends "base_generic.html" %}
+{% extends "base_generic.html" %}
 
 {% block content %}
 <h1>Title: {{book.title}}</h1>
@@ -8,7 +8,7 @@
 <p><strong>Author:</strong><a href="{{book.author.get_absolute_url}}">{{book.author}}</a></p>
 <!-- author detail link not defined yet-->
 <p><strong>Summary:</strong> {{book.summary}}</p>
-<p><strong>ISBN:</strong> {{book.ibsn}}</p>
+<p><strong>ISBN:</strong> {{ book.ibsn }}</p>
 <p><strong>Language:</strong> {{book.language}}</p>
 <p><strong>Genre</strong> {{book.genre.all|join:", "}}</p>
 
@@ -30,4 +30,21 @@
     {% endfor %}
 
 </div>
+{% endblock %}
+
+
+{% block sidebar %}
+
+{{ block.super }}
+{% if perms.catalog.change_book or perms.catalog.delete_book %}
+<ul class="sidebar-nav">
+    <hr>
+    {% if perms.catalog.change_book %}
+    <li><a href="{% url 'book-update' book.id %}">Update book</a></li>
+    {% endif %}
+    {% if perms.catalog.delete_book and not book.bookinstance_set.all %}
+    <li><a href="{% url 'book-delete' book.id %}">Delete book</a></li>
+    {% endif %}
+</ul>
+{% endif %}
 {% endblock %}
