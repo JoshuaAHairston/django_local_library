@@ -31,7 +31,6 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-ti4uj3jit43iji
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
- = []
 
 
 # Application definition
